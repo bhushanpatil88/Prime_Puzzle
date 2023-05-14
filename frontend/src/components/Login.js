@@ -12,7 +12,7 @@ import axios from 'axios'
 
 const Login = () =>{
     
-    const {isLogin,login} = useContext(AuthContext);
+    
     
     
 
@@ -31,22 +31,22 @@ const Login = () =>{
        
     }
 
-    const handleSubmit = (e)=>{
+    const handleSubmit = async (e)=>{
         e.preventDefault();     
         setErrors(LoginValidation(values))
+
         if(errors.email==="" && errors.password===""){
-            axios.post("http://localhost:3001/login",values)
-            .then(res=> {
+            try{
+                const res = await axios.post("http://localhost:3001/login",values)
+                console.log(res.data);
+                localStorage.setItem("islogged",true);
                 
                 navigate("/question/1")
-
             }
-            )
-            .catch(err=>
-               
-                console.log(err)
-            )
-            
+            catch(e){
+                console.log(e);
+            }
+                       
         }
         
     }
@@ -69,7 +69,7 @@ const Login = () =>{
                 {errors.password && <span className="text-danger">{errors.password}</span>}
             </div>
             <p></p>
-            <button type="submit" className='btn btn-success w-100 ' onClick={login}><strong>Log in</strong></button>
+            <button type="submit" className='btn btn-success w-100 '><strong>Log in</strong></button>
             <p></p>
             <Link to="/register" className='btn btn-default  border w-100 bg-light'>Create Account</Link>
             

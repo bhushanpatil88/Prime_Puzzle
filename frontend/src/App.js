@@ -11,28 +11,20 @@ import Error from './components/Error';
 
 export const AuthContext = createContext();
 function App() {
-  
-  const [isLogin,setIsLogin]  = useState(false);
- 
-  const login = () => {
-   
-      setIsLogin(true);
-  };
 
-  console.log("APP");  
   
   return (
-    <AuthContext.Provider value={{ isLogin, login, }}>   
+    // <AuthContext.Provider value={{  }}>   
       <BrowserRouter>
           <Routes>
             <Route path="/" element={<Login/>}></Route>
             <Route path="/register" element={<Register/>}></Route>
-            {isLogin &&<Route path="/question/:id" element={<Question />}></Route>}
+            {localStorage.getItem("islogged") && <Route path="/question/:id" element={<Question />}></Route>}
 
             <Route path="*" element={<Error/>}></Route>
           </Routes>
       </BrowserRouter> 
-      </AuthContext.Provider>
+      // </AuthContext.Provider>
     
   );
 }

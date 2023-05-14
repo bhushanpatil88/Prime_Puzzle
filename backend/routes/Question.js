@@ -9,30 +9,45 @@ router.get("/question",async (req,res)=>{
 })
 
 
-router.post("/question/1", async (req, res) => {
-    const answer = req.body.answer;
-
+router.post("/question/:id", async (req, res) => {
+    const {id,answer} = req.body;
+    
    
 
-//   const question = await Question.findOne({ where: { question } }).catch(
-//     (err) => {
-//       console.log("Error: ", err);
-//     }
-//   );
-
-//   if (!question)
-//     return res
-//       .status(400)
-//       .json({ message: "Solution is Wrong!" });
-
-//   if (question.answer !== answer)
-//     return res
-//       .status(400)
-//       .json({ message: "Solution is Wrong!" });
+  const question = await Question.findOne({ where: { question_id: id } }).catch(
+    (err) => {
+      console.log("Error: ", err);
+    }
+  );
 
  
 
-  res.json({ message: "Question Solved!" });
+  if (!question)
+    return res.json({ message: "Solution is Wrong!" });
+
+  
+    let count = Number(id);
+    
+    if(question.answer_1==answer){
+      if(count===2.1 || count===2.2 || count===4.1 || count===4.2)setCount(Math.round(count));
+      if(count&1)count+=1.1;
+      
+      else count+=1;
+
+      return res.json({message:"Question Solved!",next:count});
+    }
+    else if(question.answer_2==answer){
+      if(count===2.1 || count===2.2 || count===4.1 || count===4.2)setCount(Math.round(count));
+      if(count&1)count+=1.2;
+      else count+=1;
+
+      return res.json({message:"Question Solved!",next:count});
+    }
+    else res.json({message:"Answer is Wrong"});
+    
+
+
+
 });
 
 router.post("/question/2.1", async (req, res) => {

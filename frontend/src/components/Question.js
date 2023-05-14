@@ -32,41 +32,23 @@ const Question = ()=>{
         setAns(e.target.value);
     }
 
-    const submitHandler = (e) =>{
+    const submitHandler = async (e) =>{
         e.preventDefault();
         if(ans===""){
             setError("Your answer is Empty");
             return;
         }
         setError("");
-
-        axios.post(`http://localhost:3001/question/${params.id}`,{answer:ans})
-        .then(res=> {
-        
-            if(ans==question.answer_1){
-                if(count===2.1 || count===2.2 || count===4.1 || count===4.2)setCount(Math.round(count));
-                
-                if(count&1)setCount(count+1.1);
-                else setCount(count+1);
-
-                navigate(`/question/${count}`)
-            }
-            else if(question.answer_2!=0 && ans==question.answer_2){
-                if(count===2.1 || count===2.2 || count===4.1 || count===4.2)setCount(Math.round(count));
-
-                if(count&1)setCount(count+1.2);
-                else setCount(count+1);
-
-                navigate(`/question/${count}`)
-                
-            }
-            else{
-                setError("Entered Wrong Answer")
-            }
+        try {
+            const res = await axios.post(`http://localhost:3001/question/${params.id}`,{id:params.id,answer:ans}) 
+            navigate(`/question/${res.data.next}`)
+        } catch (e) {
+            console.log(e);
         }
         
-        )
-        .catch(err=>console.log(err))
+           
+        
+      
     }
 
     return (
