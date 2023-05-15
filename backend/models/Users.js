@@ -8,6 +8,10 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
+      progress:{
+        type:DataTypes.INTEGER,
+        allowNull:false,
+      }
     });
   
     return Users;

@@ -1,26 +1,22 @@
 import { useState,useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { AuthContext } from "../App";
-
+import { useAuth } from "../auth/auth";
 import LoginValidation from "./LoginValidation";
-
-
 import axios from 'axios'
 
 
 
 
 const Login = () =>{
-    
-    
-    
+    const { login } = useAuth(); 
     
 
     const navigate = useNavigate()
     
     const [values,setValues] = useState({
         email:'',
-        password:'',          
+        password:'',    
+              
     })
 
     const [errors,setErrors] = useState({})
@@ -37,11 +33,7 @@ const Login = () =>{
 
         if(errors.email==="" && errors.password===""){
             try{
-                const res = await axios.post("http://localhost:3001/login",values)
-            
-                localStorage.setItem("islogged",true);
-                
-                navigate("/question/1")
+                await login(values.email, values.password, navigate);
             }
             catch(e){
                 console.log(e);

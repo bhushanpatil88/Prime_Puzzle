@@ -2,25 +2,33 @@ import { useEffect, useState } from "react";
 import {  useNavigate,useParams } from "react-router-dom";
 import axios from 'axios'
 import Error from "./Error";
+import { useAuth } from '../auth/auth';
+import { useCookies } from "react-cookie";
 
 const Question = ()=>{
-    
     const params = useParams();
     const [question,setQuestion] = useState({});
-    
+    const [cookies, setCookies, removeCookie] = useCookies();
 
     useEffect(()=>{
-        axios.get("http://localhost:3001/question").then(function (response) {
+        if(params.id!=4.2 && params.id!=2.2 && params.id != cookies.progress){
+            removeCookie("token");
+            removeCookie('progress');
+            navigate("/");
+        }
+
+        axios.get(`http://localhost:3001/question/${params.id}`,  {
+            headers: {
+                Authorization : `Bearer ${cookies.token}`,
+            }}).then(function (response) {
         
-      let id=1;
-      if(params.id==2.1)id=2;
-      else if(params.id==2.2)id=3;
-      else if(params.id==3)id=4;
-      else if(params.id==4.1)id=5;
-      else if(params.id==4.2)id=6;
-      else if(params.id==5)id=7;
-      else if(params.id=="end")id=8;  
-      setQuestion(response.data[id-1]);
+        if(response.data.error == 'access denied'){
+            removeCookie("token");
+            removeCookie('progress');
+            navigate('/');
+        }
+     
+        setQuestion(response.data);
     });
     },[params])
 
@@ -51,11 +59,20 @@ const Question = ()=>{
         setError("");
         try {
 
-            const res = await axios.post(`http://localhost:3001/question/${params.id}`,{id:params.id,answer:ans});
+            const res = await axios.post(`http://localhost:3001/question/${params.id}`,{id:params.id,answer:ans,email:localStorage.getItem("email")});
             
             if(res.data.message=="Answer is Wrong"){
                 setError("Answer is Wrong");
                 return;
+            }
+
+           
+            
+            if(res.data.next!=2.2 && res.data.next!=4.2){
+                
+                removeCookie("progress");
+                setCookies("progress", res.data.next);
+                
             }
             navigate(`/question/${res.data.next}`)
         } catch (e) {

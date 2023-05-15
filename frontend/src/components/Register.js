@@ -6,32 +6,36 @@ import axios from 'axios'
 
 export const Register = () =>{
     const navigate = useNavigate();
-    const [values,setValues] = useState({
-        email:'',
-        password:'',
-        confirmPassword:'',          
-    })
+
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
 
     const [errors,setErrors] = useState({})
 
-    const handleInput = (e)=>{
-        setValues((prev)=>({...prev,[e.target.name]:[e.target.value] }) )
-        
-       
-    }
-
     const handleSubmit =  (e)=>{
-        e.preventDefault();     
+        e.preventDefault();  
+
+        let values = {
+            email,
+            password,
+            confirmPassword
+        }
+          
         setErrors(RegisterValidation(values))
 
         if(errors.email==="" && errors.password==="" && errors.confirmPassword===""){
+            try {
+                console.log(values);
+                const res  = axios.post("http://localhost:3001/register",values)
+                
+                navigate("/")
+            } catch (e) {
+                console.log(e)
+            }
             
-            axios.post("http://localhost:3001/register",values)
-            .then(res=> navigate("/"))
-            .catch(err=>
-                console.log(err)
-              
-            )
+            
+           
             
         }
           
@@ -44,17 +48,17 @@ export const Register = () =>{
             <h2>Register</h2>
             <div className='mb-3'>
                 <label htmlFor='email'><strong>Email</strong></label>
-                <input onChange={handleInput} name="email" className="form-control rounded-0" type='email' placeholder='Enter Email' />
+                <input onChange={(e)=>setEmail(e.target.value)} name="email" className="form-control rounded-0" type='email' placeholder='Enter Email' />
                 {errors.email && <span  className="text-danger">{errors.email}</span>}
             </div>
             <div>
                 <label htmlFor='password'><strong>Password</strong></label>
-                <input onChange={handleInput} name="password" className="form-control rounded-0" type='password' placeholder='Enter Password' />
+                <input onChange={e=>setPassword(e.target.value)} name="password" className="form-control rounded-0" type='password' placeholder='Enter Password' />
                 {errors.password && <span  className="text-danger">{errors.password}</span>}<br />
             </div>
             <div>
                 <label htmlFor='confirmPassword'><strong>Confirm Password</strong></label>
-                <input onChange={handleInput} name="confirmPassword" className="form-control rounded-0" type='password' placeholder='Confirm Password' />
+                <input onChange={e=>setConfirmPassword(e.target.value)} name="confirmPassword" className="form-control rounded-0" type='password' placeholder='Confirm Password' />
                 {errors.confirmPassword && <span  className="text-danger">{errors.confirmPassword}</span>}
             </div>
             <p></p>
