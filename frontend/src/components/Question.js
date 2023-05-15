@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import {  useNavigate,useParams } from "react-router-dom";
 import axios from 'axios'
 import Error from "./Error";
-import dog from './dog.jpg'
+import table from './table.png'
 import { useCookies } from "react-cookie";
 
 const Question = ()=>{
@@ -14,7 +14,7 @@ const Question = ()=>{
     useEffect(()=>{
         
         //frontend check
-        if(params.id!=4.2 && params.id!=2.2 && params.id != cookies.progress){
+        if(params.id!=4.2 && params.id!=2.2 && params.id > cookies.progress){
             removeCookie("token");
             removeCookie('progress');
             navigate("/");
@@ -95,8 +95,9 @@ const Question = ()=>{
             {params.id!=6 && <h2>Question {params.id}</h2>}
             <div className='mb-3'>
               
-                    <p>{question.question_1}</p><br/>
-                    {params.id==5 ? <img src={dog} alt="DOG" />:<p>{question.question_2}</p>}
+                    <p>{question.question_1}</p>
+                    <p>{question.question_2}</p>
+                    {params.id==5 ? <img src={table} alt="Matrix"  />:<p></p>}<br /> <br/>
             
             
                {(params.id!=2.2 && params.id!=4.2 && params.id!=6) ? <input onChange={handleInput} name="question" className="form-control rounded-0" type='question' placeholder='Your Answer' />:<p></p>}

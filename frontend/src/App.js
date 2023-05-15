@@ -1,15 +1,16 @@
 
 import './App.css';
 import {BrowserRouter,Routes,Route} from  'react-router-dom';
-import {  useState,createContext} from 'react';
+
 import { ProtectRoutes } from './auth/protectRoutes';
 import Login  from './components/Login';
 import  Register  from './components/Register';
 import Question from './components/Question'
 import Error from './components/Error';
+import Admin from './components/Admin';
 
 
-export const AuthContext = createContext();
+
 function App() {
 
   
@@ -19,7 +20,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Login/>}></Route>
             <Route path="/register" element={<Register/>}></Route>
-            {/* {localStorage.getItem("islogged") && <Route path="/question/:id" element={<Question />}></Route>} */}
+            <Route path='/admin' element={<Admin />}></Route>
             <Route element={ <ProtectRoutes /> }>
               <Route path='/question/:id' element={ <Question/> } />
             </Route>

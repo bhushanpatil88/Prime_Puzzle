@@ -26,17 +26,14 @@ export const Register = () =>{
 
         if(errors.email==="" && errors.password==="" && errors.confirmPassword===""){
             try {
-                console.log(values);
+                
                 const res  = axios.post("http://localhost:3001/register",values)
                 
                 navigate("/")
             } catch (e) {
                 console.log(e)
             }
-            
-            
-           
-            
+          
         }
           
     }

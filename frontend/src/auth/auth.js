@@ -8,6 +8,8 @@ const UserContext = createContext();
 export const UserProvider = ({ children }) => {
     const [cookies, setCookies, removeCookie] = useCookies();
 
+   
+
     const login = async (email, password, navigate) => {
         try{
             const res = await axios.post('http://localhost:3001/login', {
@@ -15,7 +17,7 @@ export const UserProvider = ({ children }) => {
                 password: password
             });
 
-            const expirationTime = 20 * 60 * 1000; // 20 minutes in milliseconds
+            const expirationTime =  86400 * 1000; // 20 minutes in milliseconds
         const expirationDate = new Date(Date.now() + expirationTime);
             
         setCookies('token', res.data.token, {
@@ -32,21 +34,17 @@ export const UserProvider = ({ children }) => {
         }
         catch(error){
             console.log(error);
-            alert(error);
+            alert("Invalid Login Details");
         }
 
     };
 
-    const logout = (navigate) => {
-        ['token', 'name'].forEach(obj => removeCookie(obj)); // remove data save in cookies
-        navigate('/login');
-    };
-
+   
     const value = useMemo(
         () => ({
             cookies,
             login,
-            logout
+        
         }),
         [cookies]
     );
