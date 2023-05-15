@@ -3,6 +3,7 @@ const router = express.Router();
 const {Question,Users}  = require("../models")
 const jwt = require('jsonwebtoken');
 
+
 router.get("/question/:id",async (req,res)=>{
   const questions  = await Question.findAll();
   const qId = req.params.id;

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import {  useNavigate,useParams } from "react-router-dom";
 import axios from 'axios'
 import Error from "./Error";
-import { useAuth } from '../auth/auth';
+import dog from './dog.jpg'
 import { useCookies } from "react-cookie";
 
 const Question = ()=>{
@@ -96,7 +96,7 @@ const Question = ()=>{
             <div className='mb-3'>
               
                     <p>{question.question_1}</p><br/>
-                    <p>{question.question_2}</p>
+                    {params.id==5 ? <img src={dog} alt="DOG" />:<p>{question.question_2}</p>}
             
             
                {(params.id!=2.2 && params.id!=4.2 && params.id!=6) ? <input onChange={handleInput} name="question" className="form-control rounded-0" type='question' placeholder='Your Answer' />:<p></p>}

@@ -1,6 +1,6 @@
 import { createContext, useContext, useMemo } from 'react';
 import { useCookies } from 'react-cookie';
-import { useNavigate } from 'react-router-dom';
+
 import axios from 'axios';
 
 const UserContext = createContext();
@@ -14,9 +14,17 @@ export const UserProvider = ({ children }) => {
                 email: email,
                 password: password
             });
+
+            const expirationTime = 20 * 60 * 1000; // 20 minutes in milliseconds
+        const expirationDate = new Date(Date.now() + expirationTime);
             
-            setCookies('token', res.data.token); // your token
-            setCookies('progress', res.data.progress); // optional data
+        setCookies('token', res.data.token, {
+            expires: expirationDate
+        }); // your token
+
+        setCookies('progress', res.data.progress, {
+            expires: expirationDate
+        }); // optional data
             
             alert("Logged In Successfully");
 
