@@ -11,8 +11,7 @@ router.get("/question",async (req,res)=>{
 
 router.post("/question/:id", async (req, res) => {
     const {id,answer} = req.body;
-    
-   
+  
 
   const question = await Question.findOne({ where: { question_id: id } }).catch(
     (err) => {
@@ -29,15 +28,15 @@ router.post("/question/:id", async (req, res) => {
     let count = Number(id);
     
     if(question.answer_1==answer){
-      if(count===2.1 || count===2.2 || count===4.1 || count===4.2)setCount(Math.round(count));
+      if(count===2.1 || count===2.2 || count===4.1 || count===4.2)count = Math.round(count);
+      if(count==5)return res.json({message:"Treasure Found",next:"end"})
       if(count&1)count+=1.1;
-      
       else count+=1;
 
       return res.json({message:"Question Solved!",next:count});
     }
-    else if(question.answer_2==answer){
-      if(count===2.1 || count===2.2 || count===4.1 || count===4.2)setCount(Math.round(count));
+    else if(count==3 || (answer!=0 && question.answer_2==answer)){
+      if(count===2.1 || count===2.2 || count===4.1 || count===4.2)count = Math.round(count);
       if(count&1)count+=1.2;
       else count+=1;
 
@@ -50,161 +49,7 @@ router.post("/question/:id", async (req, res) => {
 
 });
 
-router.post("/question/2.1", async (req, res) => {
-  const answer = req.body.answer;
 
- 
-
-//   const question = await Question.findOne({ where: { question } }).catch(
-//     (err) => {
-//       console.log("Error: ", err);
-//     }
-//   );
-
-//   if (!question)
-//     return res
-//       .status(400)
-//       .json({ message: "Solution is Wrong!" });
-
-//   if (question.answer !== answer)
-//     return res
-//       .status(400)
-//       .json({ message: "Solution is Wrong!" });
-
-
-
-res.json({ message: "Question Solved!" });
-});
-
-router.post("/question/2.2", async (req, res) => {
-  const answer = req.body.answer;
-
- 
-
-//   const question = await Question.findOne({ where: { question } }).catch(
-//     (err) => {
-//       console.log("Error: ", err);
-//     }
-//   );
-
-//   if (!question)
-//     return res
-//       .status(400)
-//       .json({ message: "Solution is Wrong!" });
-
-//   if (question.answer !== answer)
-//     return res
-//       .status(400)
-//       .json({ message: "Solution is Wrong!" });
-
-
-
-res.json({ message: "Question Solved!" });
-});
-
-router.post("/question/3", async (req, res) => {
-  const answer = req.body.answer;
-
- 
-
-//   const question = await Question.findOne({ where: { question } }).catch(
-//     (err) => {
-//       console.log("Error: ", err);
-//     }
-//   );
-
-//   if (!question)
-//     return res
-//       .status(400)
-//       .json({ message: "Solution is Wrong!" });
-
-//   if (question.answer !== answer)
-//     return res
-//       .status(400)
-//       .json({ message: "Solution is Wrong!" });
-
-
-
-res.json({ message: "Question Solved!" });
-});
-
-router.post("/question/4.1", async (req, res) => {
-  const answer = req.body.answer;
-
- 
-
-//   const question = await Question.findOne({ where: { question } }).catch(
-//     (err) => {
-//       console.log("Error: ", err);
-//     }
-//   );
-
-//   if (!question)
-//     return res
-//       .status(400)
-//       .json({ message: "Solution is Wrong!" });
-
-//   if (question.answer !== answer)
-//     return res
-//       .status(400)
-//       .json({ message: "Solution is Wrong!" });
-
-
-
-res.json({ message: "Question Solved!" });
-});
-
-router.post("/question/4.2", async (req, res) => {
-  const answer = req.body.answer;
-
- 
-
-//   const question = await Question.findOne({ where: { question } }).catch(
-//     (err) => {
-//       console.log("Error: ", err);
-//     }
-//   );
-
-//   if (!question)
-//     return res
-//       .status(400)
-//       .json({ message: "Solution is Wrong!" });
-
-//   if (question.answer !== answer)
-//     return res
-//       .status(400)
-//       .json({ message: "Solution is Wrong!" });
-
-
-
-res.json({ message: "Question Solved!" });
-});
-
-router.post("/question/5", async (req, res) => {
-  const answer = req.body.answer;
-
- 
-
-//   const question = await Question.findOne({ where: { question } }).catch(
-//     (err) => {
-//       console.log("Error: ", err);
-//     }
-//   );
-
-//   if (!question)
-//     return res
-//       .status(400)
-//       .json({ message: "Solution is Wrong!" });
-
-//   if (question.answer !== answer)
-//     return res
-//       .status(400)
-//       .json({ message: "Solution is Wrong!" });
-
-
-
-res.json({ message: "Question Solved!" });
-});
 
 
 module.exports = router;

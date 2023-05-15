@@ -38,7 +38,7 @@ const Login = () =>{
         if(errors.email==="" && errors.password===""){
             try{
                 const res = await axios.post("http://localhost:3001/login",values)
-                console.log(res.data);
+            
                 localStorage.setItem("islogged",true);
                 
                 navigate("/question/1")
