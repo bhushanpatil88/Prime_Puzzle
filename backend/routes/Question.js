@@ -18,7 +18,7 @@ router.get("/question/:id",async (req,res)=>{
       else if(qId==4.2)id=6;
       else if(qId==5)id=7;
       else if(qId==6)id=8;
-    
+   
     //backend check
     if(qId==2.2 || qId==4.2 || qId <= user.progress) return res.json(questions[id - 1])
 

@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-
+import { BASE_URL } from "../helper";
 const Admin = () =>{
     const [users,setUsers] = useState([]);
     const [adminLogin,setAdminLogin]  = useState(false);
@@ -9,7 +9,7 @@ const Admin = () =>{
     const [errors,setErrors] = useState({}) ;
     useEffect(()=>{
         try{
-            axios.get("http://localhost:3001/users")
+            axios.get(`${BASE_URL}/users`)
             .then((res)=>{
             
                 setUsers(res.data);
@@ -37,7 +37,7 @@ const Admin = () =>{
         if(errors.email==="" && errors.password===""){
             try {
             
-                if(email==="root@123" && password==="123456"){
+                if(email==="root@123.com" && password==="123456"){
                     setAdminLogin(true);
                 }
                 

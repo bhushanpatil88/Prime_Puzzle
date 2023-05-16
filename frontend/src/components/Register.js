@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import RegisterValidation from './RegisterValidation'
 import axios from 'axios'
-
+import { BASE_URL } from "../helper";
 
 export const Register = () =>{
     const navigate = useNavigate();
@@ -27,7 +27,7 @@ export const Register = () =>{
         if(errors.email==="" && errors.password==="" && errors.confirmPassword===""){
             try {
                 
-                const res  = axios.post("http://localhost:3001/register",values)
+                const res  = axios.post(`${BASE_URL}/register`,values)
                 
                 navigate("/")
             } catch (e) {

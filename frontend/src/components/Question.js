@@ -4,6 +4,7 @@ import axios from 'axios'
 import Error from "./Error";
 import table from './table.png'
 import { useCookies } from "react-cookie";
+import { BASE_URL } from "../helper";
 
 const Question = ()=>{
     const params = useParams();
@@ -20,9 +21,9 @@ const Question = ()=>{
             navigate("/");
         }
 
-        axios.get(`http://localhost:3001/question/${params.id}`,  {
+        axios.get(`${BASE_URL}/question/${params.id}`,  {
             headers: {
-                Authorization : `Bhushan ${cookies.token}`,
+                Authorization : `Bearer ${cookies.token}`,
             }}).then(function (response) {
         
         if(response.data.error == 'access denied'){
@@ -31,7 +32,7 @@ const Question = ()=>{
             navigate('/');
         }
 
-    
+        console.log(response.data);
         setQuestion(response.data);
     });
     },[params])
@@ -62,7 +63,7 @@ const Question = ()=>{
         setError("");
         try {
 
-            const res = await axios.post(`http://localhost:3001/question/${params.id}`,{answer:ans,token:cookies.token});
+            const res = await axios.post(`${BASE_URL}/question/${params.id}`,{answer:ans,token:cookies.token});
         
             if(res.data.message=="Answer is Wrong"){
                 setError("Answer is Wrong");
