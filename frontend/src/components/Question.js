@@ -31,8 +31,8 @@ const Question = ()=>{
             removeCookie('progress');
             navigate('/');
         }
-
-        console.log(response.data);
+        // console.log("any question");
+        // console.log(response.data);
         setQuestion(response.data);
     });
     },[params])

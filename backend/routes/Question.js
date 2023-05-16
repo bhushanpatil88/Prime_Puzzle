@@ -1,16 +1,24 @@
 const express = require("express");
 const router = express.Router();
-const {Question,Users}  = require("../models")
+const {Questions,Users}  = require("../models")
 const jwt = require('jsonwebtoken');
 
 
 router.get("/question/:id",async (req,res)=>{
-  const questions  = await Question.findAll();
+
+ 
+  
+  const questions  = await Questions.findAll();
+  // console.log("GET questions from backend");
+  // console.log(questions);
+  
   const qId = req.params.id;
   const token = req.headers.authorization.split(' ')[1];
   let decoded = jwt.verify(token, 'xyz');
+  
   const user = await Users.findOne({where: {email:decoded.email}})
-      let id=1;
+  
+  let id=1;
       if(qId==2.1)id=2;
       else if(qId==2.2)id=3;
       else if(qId==3)id=4;
@@ -32,7 +40,7 @@ router.post("/question/:id", async (req, res) => {
     let decoded = jwt.verify(token, 'xyz');
 
 
-  const question = await Question.findOne({ where: { question_id: req.params.id } }).catch(
+  const question = await Questions.findOne({ where: { question_id: req.params.id } }).catch(
     (err) => {
       console.log("Error: ", err);
     }

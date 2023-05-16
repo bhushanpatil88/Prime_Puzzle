@@ -10,7 +10,7 @@ const config = require(__dirname + '/../config/config.json')[env];
 require('dotenv').config();
 const db = {};
 
-
+// let sequelize;
 // if (config.use_env_variable) {
 //   sequelize = new Sequelize(process.env[config.use_env_variable], config);
 // } else {
@@ -24,9 +24,9 @@ let sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USERNAME, proc
   }
 });
   
-var sql_string = fs.readFileSync('./questions.sql', 'utf8');
+// var sql_string = fs.readFileSync('./questions.sql', 'utf8');
 
-sequelize.query(sql_string);
+// sequelize.query(sql_string);
 
 
 fs
