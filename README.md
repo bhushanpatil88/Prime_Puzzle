@@ -11,7 +11,17 @@ This web application aims to provide a treasure hunt puzzle  for entertainment p
 - [Login,Register]: The user can register, login which requires it's email and password. The data is stored in MYSQL database.
 - [Secure Routes]: The user cannot shift to the next question without solving the current one.
 - [Cookie Management]: Once logged-in user has login access for 24 hours
-- [Progress Managemenr]: The user will be redirected to the same page where they left or logout.
+- [Progress Management]: The user will be redirected to the same page where they left or logout.
+
+## Soft Skills
+
+-Observation and Feedback: Soft skills are often assessed through direct observation and feedback from others. This can include evaluating how a person communicates, collaborates, and interacts with others in various situations.
+
+-Behavioral Interviews: During interviews, employers may ask questions that aim to assess soft skills. These questions are designed to gauge a person's ability to adapt, problem-solve, communicate effectively, work in a team, show empathy, and demonstrate other soft skills.
+
+-Self-Assessment: Individuals can also self-assess their soft skills by reflecting on their own behavior and seeking feedback from others. This involves evaluating how well they communicate, collaborate, manage conflicts, demonstrate leadership, and other relevant soft skills.
+
+-Assessments and Tests: Some organizations and professionals offer assessments or tests specifically designed to evaluate soft skills. These assessments can provide insights into a person's strengths and areas for improvement in various soft skill areas.
 
 ## Prerequisites
 
