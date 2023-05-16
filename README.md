@@ -1,4 +1,4 @@
-# Project Name
+# PRIME PUZZLE
 
 This project is a web application developed using React.js for the frontend and Express.js for the backend.
 
@@ -15,13 +15,13 @@ This web application aims to provide a treasure hunt puzzle  for entertainment p
 
 ## Soft Skills
 
--Observation and Feedback: Soft skills are often assessed through direct observation and feedback from others. This can include evaluating how a person communicates, collaborates, and interacts with others in various situations.
+- Observation and Feedback: Soft skills are often assessed through direct observation and feedback from others. This can include evaluating how a person communicates, collaborates, and interacts with others in various situations.
 
--Behavioral Interviews: During interviews, employers may ask questions that aim to assess soft skills. These questions are designed to gauge a person's ability to adapt, problem-solve, communicate effectively, work in a team, show empathy, and demonstrate other soft skills.
+- Behavioral Interviews: During interviews, employers may ask questions that aim to assess soft skills. These questions are designed to gauge a person's ability to adapt, problem-solve, communicate effectively, work in a team, show empathy, and demonstrate other soft skills.
 
--Self-Assessment: Individuals can also self-assess their soft skills by reflecting on their own behavior and seeking feedback from others. This involves evaluating how well they communicate, collaborate, manage conflicts, demonstrate leadership, and other relevant soft skills.
+- Self-Assessment: Individuals can also self-assess their soft skills by reflecting on their own behavior and seeking feedback from others. This involves evaluating how well they communicate, collaborate, manage conflicts, demonstrate leadership, and other relevant soft skills.
 
--Assessments and Tests: Some organizations and professionals offer assessments or tests specifically designed to evaluate soft skills. These assessments can provide insights into a person's strengths and areas for improvement in various soft skill areas.
+- Assessments and Tests: Some organizations and professionals offer assessments or tests specifically designed to evaluate soft skills. These assessments can provide insights into a person's strengths and areas for improvement in various soft skill areas.
 
 ## Prerequisites
 
